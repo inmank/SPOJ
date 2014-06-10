@@ -25,15 +25,8 @@ Output:
 2
 88
 '''
-
-def calculate(inList):
-    for k in range(len(inList)):
-        val = inList[k]
         
-        if (val == 42):
-            break
-
-        print val
-        
-input = [1, 2, 88, 42, 99]
-calculate(input)
+input = raw_input()
+while (int(input) != 42):
+    print int(input)
+    input = raw_input()
