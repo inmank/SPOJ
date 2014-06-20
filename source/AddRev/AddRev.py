@@ -41,3 +41,20 @@ Sample output:
 1998
 1
 '''
+
+def reverseNum(numIn):
+    numOut = 0;
+    
+    while (numIn <> 0):
+        numOut = numOut * 10
+        numOut = numOut + numIn%10
+        numIn = numIn/10
+        
+    return numOut
+
+inCount = raw_input()
+print inCount
+for i in range(int(inCount)):
+    inValues = raw_input().split(" ")
+    print reverseNum(reverseNum(int(inValues[0])) + reverseNum(int(inValues[1])))
+        
