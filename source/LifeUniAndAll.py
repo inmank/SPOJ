@@ -7,9 +7,9 @@ Problem:
 
 Your program is to use the brute-force approach in order to find the Answer 
 to Life, the Universe, and Everything. More precisely... 
-rewrite small numbers from input to output. Stop processing input after 
+rewrite small numbers from inVal to output. Stop processing inVal after 
 reading in the number 42. 
-All numbers at input are integers of one or two digits.
+All numbers at inVal are integers of one or two digits.
 
 Example
 
@@ -26,7 +26,7 @@ Output:
 88
 '''
         
-input = raw_input()
-while (int(input) != 42):
-    print int(input)
-    input = raw_input()
+inVal = raw_input()
+while (int(inVal) != 42):
+    print int(inVal)
+    inVal = raw_input()
