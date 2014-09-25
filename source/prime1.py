@@ -39,44 +39,20 @@ for i in range(int(raw_input())):
     inValues = raw_input().split(" ");
     minVal = int(inValues[0]);
     maxVal = int(inValues[1])+1;
-    
-    #Trivial ways
-    '''for j in range(minVal, maxVal):
-        if (j == 2): print j;
-         
-        if (j == 1 or j%2 == 0):
-            continue;
-        
-        isPrime = True;
-        for count in range(3, int(math.sqrt(j))+1):
-            if (j%count == 0):
-                isPrime = False; 
-                break;
-        
-        if(isPrime): print j;'''
-        
-    #Seive of Erothesenes
-    '''seiveArr = range(minVal, maxVal);
-    index = 0;
-    
-    if 1 in seiveArr:
-        seiveArr.remove(1);
-        
-    while (index < len(seiveArr)):
-        p = seiveArr[index];
-        count = 2;
-        num = p*count;
-        while (num <= seiveArr[-1]):
-            if num in seiveArr:
-                seiveArr.remove(num);
-            count+=1;
-            num = p*count;
-        
-        index+=1;
-        
-    for prime in seiveArr:
-        print prime;'''
-    
-    seiveArr = range(2, math.sqrt(maxVal));
     outArr = range(minVal, maxVal);
+    
+    #Sieve of Eratosthenes
+    for i in range(2, int(math.sqrt(maxVal))+1):
+        for j in range(0, len(outArr)):
+            if j >= len(outArr):
+                break
+            
+            val = outArr[j]
+            
+            if (val % i == 0 and (i != 1 or i != j)):
+                    outArr.remove(val)
+            
+    for k in range(0, len(outArr)):
+        print outArr[k]
+                            
     print "";
