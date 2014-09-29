@@ -35,24 +35,43 @@ Output:
 '''
 import math;
 
-for i in range(int(raw_input())):
-    inValues = raw_input().split(" ");
-    minVal = int(inValues[0]);
-    maxVal = int(inValues[1])+1;
-    outArr = range(minVal, maxVal);
-    
+MAX = 1000000000
+SMAX = int(math.sqrt(MAX))+1
+
+def seive(arrIn, sArr):
     #Sieve of Eratosthenes
-    for i in range(2, int(math.sqrt(maxVal))+1):
-        for j in range(0, len(outArr)):
-            if j >= len(outArr):
+    '''for i in sArr:
+        for j in arrIn:
+            if (j != 1 and j != i and j % i == 0):
+                arrIn.remove(j)'''
+
+    for i in arrIn:
+        print str(i) + " "
+        for j in sArr:
+            if (i == 1 or i == j):
                 break
-            
-            val = outArr[j]
-            
-            if (val % i == 0 and (i != 1 or i != j)):
-                    outArr.remove(val)
-            
-    for k in range(0, len(outArr)):
-        print outArr[k]
+            if (i % j == 0):
+                arrIn.remove(i)
+                break
+                
+def printArr(arr):
+    for k in arr:
+        print str(k) + " "
+        
+seiveArr = range(2, SMAX)
+tmpArr = range(2, int(math.sqrt(SMAX))+1)
+seive(seiveArr, tmpArr)
+
+#print "Enter now"
+for i in range(int(raw_input())):
+    inValues = raw_input().split(" ")
+    minVal = int(inValues[0])
+    maxVal = int(inValues[1])+1
+    outArr = range(minVal, maxVal)
+    
+    seive(outArr, seiveArr)
+    printArr(outArr)
                             
-    print "";
+    print ""
+    #print len(outArr)
+    #print ""
