@@ -34,44 +34,77 @@ Output:
 5
 '''
 import math;
+import datetime;
 
 MAX = 1000000000
 SMAX = int(math.sqrt(MAX))+1
 
-def seive(arrIn, sArr):
+def seive1(minVal, maxVal):
+    outArr = [2]
+    if (minVal < 3):
+        minVal = 3
+        
+    if (minVal % 2 == 0):
+        minVal+=1;
+    
+    for j in range(minVal, maxVal, 2):
+        isPrime = True
+        cap = int(math.sqrt(j))+1
+        
+        for i in outArr:
+            if (i >= cap):
+                break
+            if (j % i == 0):
+                isPrime = False
+                break
+        
+        if isPrime:
+            outArr.append(j)
+        
+    return outArr
+    
+def seive(minVal, maxVal, sArr):
     #Sieve of Eratosthenes
     '''for i in sArr:
         for j in arrIn:
             if (j != 1 and j != i and j % i == 0):
                 arrIn.remove(j)'''
 
-    for i in arrIn:
-        print str(i) + " "
+    for i in range(minVal, maxVal, 2):
+        cap = int(math.sqrt(i))+1
+        isPrime = True
+        
         for j in sArr:
-            if (i == 1 or i == j):
+            if (j >= cap):
                 break
             if (i % j == 0):
-                arrIn.remove(i)
+                isPrime = False
                 break
-                
-def printArr(arr):
-    for k in arr:
-        print str(k) + " "
         
-seiveArr = range(2, SMAX)
-tmpArr = range(2, int(math.sqrt(SMAX))+1)
-seive(seiveArr, tmpArr)
+        if isPrime:
+            print i
+                   
+'''def printArr(arr):
+    for k in arr:
+        print str(k) + " "'''
+        
+#seiveArr = range(2, SMAX)
+seiveArr = seive1(2, SMAX)
 
 #print "Enter now"
+
 for i in range(int(raw_input())):
     inValues = raw_input().split(" ")
     minVal = int(inValues[0])
-    maxVal = int(inValues[1])+1
-    outArr = range(minVal, maxVal)
-    
-    seive(outArr, seiveArr)
-    printArr(outArr)
+    if (minVal % 2 == 0):
+        minVal+=1;
+    maxVal = int(inValues[1])
+    print datetime.datetime.now()
+    seive(minVal, maxVal, seiveArr)
+    #outArr = seive1(minVal, maxVal)
+    #printArr(outArr)
                             
     print ""
     #print len(outArr)
     #print ""
+print datetime.datetime.now()
