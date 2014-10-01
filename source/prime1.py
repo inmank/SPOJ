@@ -65,10 +65,6 @@ def seive1(minVal, maxVal):
     
 def seive(minVal, maxVal, sArr):
     #Sieve of Eratosthenes
-    '''for i in sArr:
-        for j in arrIn:
-            if (j != 1 and j != i and j % i == 0):
-                arrIn.remove(j)'''
 
     for i in range(minVal, maxVal, 2):
         cap = int(math.sqrt(i))+1
@@ -84,11 +80,6 @@ def seive(minVal, maxVal, sArr):
         if isPrime:
             print i
                    
-'''def printArr(arr):
-    for k in arr:
-        print str(k) + " "'''
-        
-#seiveArr = range(2, SMAX)
 seiveArr = seive1(2, SMAX)
 
 #print "Enter now"
@@ -96,15 +87,90 @@ seiveArr = seive1(2, SMAX)
 for i in range(int(raw_input())):
     inValues = raw_input().split(" ")
     minVal = int(inValues[0])
+    maxVal = int(inValues[1])
+    
     if (minVal % 2 == 0):
         minVal+=1;
-    maxVal = int(inValues[1])
-    print datetime.datetime.now()
+        
+    
+    #print datetime.datetime.now()
     seive(minVal, maxVal, seiveArr)
-    #outArr = seive1(minVal, maxVal)
-    #printArr(outArr)
                             
     print ""
-    #print len(outArr)
-    #print ""
-print datetime.datetime.now()
+
+#print datetime.datetime.now()
+
+
+'''
+Java
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class PrimeGen {
+    Scanner scan = new Scanner(System.in);
+    ArrayList<Integer> seiveArr = new ArrayList<Integer>();
+    
+    private void genSeive() {
+        seiveArr.add(2);
+        for (int i=3; i < 32000; i+=2) {
+            boolean isPrime = true;
+            int cap = (int) Math.sqrt(Double.valueOf(i)) + 1;
+
+            for (int j : seiveArr) {
+                if ( j >= cap) break;
+
+                if (i%j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime)
+                seiveArr.add(i);
+        }
+    }
+    
+    private void genPrime() {
+        int totalCase = scan.nextInt();
+
+        for (int k = 0; k < totalCase; k++) {
+            if (k > 0) System.out.println("");
+
+            int minVal = scan.nextInt();
+            int maxVal = scan.nextInt();
+
+            if (minVal < 3) {
+                minVal = 3;
+                System.out.println(2);
+            }
+
+            if (minVal %2 == 0) minVal +=1;
+
+            for (int i=minVal; i <= maxVal; i+=2) {
+                boolean isPrime = true;
+                int cap = (int) Math.sqrt(Double.valueOf(i)) + 1;
+
+                for (int j : seiveArr) {
+                    if ( j >= cap) break;
+
+                    if (i%j == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+
+                if (isPrime)
+                    System.out.println(i);
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        PrimeGen pp = new PrimeGen();
+        pp.genSeive();
+        pp.genPrime();
+    }
+
+}
+'''
